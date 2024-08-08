@@ -82,3 +82,9 @@ Saving the model
 import skops.io as sio
 
 sio.dump(pipe, "Model/drug_pipeline.skops")
+
+
+'''
+Loading the model
+'''
+sio.load("Model/drug_pipeline.skops", trusted=True)
