@@ -87,4 +87,4 @@ sio.dump(pipe, "Model/drug_pipeline.skops")
 '''
 Loading the model
 '''
-sio.load("Model/drug_pipeline.skops", trusted=get_untrusted_types(file = "Model/drug_pipeline.skops"))
+sio.load("Model/drug_pipeline.skops", trusted=sio.get_untrusted_types(file = "Model/drug_pipeline.skops"))
