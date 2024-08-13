@@ -3,9 +3,9 @@ import skops.io as sio
 
 pipe = sio.load("Model/drug_pipeline.skops", trusted=sio.get_untrusted_types(file = "Model/drug_pipeline.skops"))
 
+
 def predict_drug(age, sex, blood_pressure, cholesterol, na_to_k_ratio):
-    """
-    Predict drugs based on patient features.
+    """Predict drugs based on patient features.
 
     Args:
         age (int): Age of patient
@@ -22,6 +22,7 @@ def predict_drug(age, sex, blood_pressure, cholesterol, na_to_k_ratio):
 
     label = f"Predicted Drug: {predicted_drug}"
     return label
+
 
 inputs = [
     gr.Slider(15, 74, step=1, label="Age"),
@@ -53,5 +54,4 @@ gr.Interface(
     description=description,
     article=article,
     theme=gr.themes.Soft(),
-).launch()
-
+).launch(share=True)
