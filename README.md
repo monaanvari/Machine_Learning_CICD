@@ -9,4 +9,4 @@ The code results in a Gradio app that uses the trained model and is continuously
 
 
 
-www.datacamp.com/tutorial/ci-cd-for-machine-learning
+Source: www.datacamp.com/tutorial/ci-cd-for-machine-learning
