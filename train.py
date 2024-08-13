@@ -1,7 +1,7 @@
-'''
+"""
 This will be the standardized training script that will run in
 CI workflow whenever there is a change in the data or code.
-'''
+"""
 
 import pandas as pd
 
@@ -18,19 +18,19 @@ X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.3, random_state=125
 )
 
-'''
+"""
 Build a processing pipeline using ColumnTransformer,
 which will convert categorical values into numbers, 
 fill in missing values, and scale the numerical columns.
-'''
+"""
 from sklearn.compose import ColumnTransformer
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.impute import SimpleImputer
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OrdinalEncoder, StandardScaler
 
-cat_col = [1,2,3]
-num_col = [0,4]
+cat_col = [1, 2, 3]
+num_col = [0, 4]
 
 transform = ColumnTransformer(
     [
@@ -40,10 +40,10 @@ transform = ColumnTransformer(
     ]
 )
 
-'''
+"""
 Create a training pipeline that will take the transformed
 data and train a random forest classifier.
- '''
+ """
 pipe = Pipeline(
     steps=[
         ("preprocessing", transform),
@@ -63,10 +63,10 @@ with open("Results/metrics.txt", "w") as outfile:
     outfile.write(f"\nAccuracy = {accuracy:.2f}, F1 Score = {f1:.2f}.")
 
 
-'''
+"""
 Create the confusion matrix and save the image file into the
 Results folder.
-'''
+"""
 import matplotlib.pyplot as plt
 from sklearn.metrics import ConfusionMatrixDisplay, confusion_matrix
 
@@ -75,16 +75,19 @@ disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=pipe.classes_)
 disp.plot()
 plt.savefig("Results/model_results.png", dpi=120)
 
-'''
+"""
 Saving the model
-'''
+"""
 
 import skops.io as sio
 
 sio.dump(pipe, "Model/drug_pipeline.skops")
 
 
-'''
+"""
 Loading the model
-'''
-sio.load("Model/drug_pipeline.skops", trusted=sio.get_untrusted_types(file = "Model/drug_pipeline.skops"))
+"""
+sio.load(
+    "Model/drug_pipeline.skops",
+    trusted=sio.get_untrusted_types(file="Model/drug_pipeline.skops"),
+)
