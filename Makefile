@@ -34,6 +34,4 @@ push-hub:
 	huggingface-cli upload monaavr/Drug-Classification ./Model /Model --repo-type=space --commit-message="Sync Model"
 	huggingface-cli upload monaavr/Drug-Classification ./Results /Metrics --repo-type=space --commit-message="Sync Model"
 
-deploy: 
-	hf-login
-	push-hub
+deploy: hf-login push-hub
